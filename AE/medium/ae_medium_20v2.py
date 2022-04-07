@@ -4,17 +4,13 @@ def maxSubsetSumNoAdjacent(array: list) -> int:
         return 0
     if len(array) == 1:
         return array[0]
-    if len(array) == 2:
-        return max(array[0], array[1])
     dp1 = array[0]
-    dp2 = array[1]
-    dp3 = max(dp2, array[2] + dp1)
-    for index in range(3, len(array)):
-        temp = dp3
-        dp3 = max(array[index] + dp2, dp3, array[index] + dp1)
-        dp1 = dp2
-        dp2 = temp
-    return dp3
+    dp2 = max(array[0], array[1])
+    for index in range(2, len(array)):
+        temp = dp2
+        dp2 = max(dp2, array[index] + dp1)
+        dp1 = temp
+    return dp2
 
 
 class MaxSubSetSumNoAdjacent:
